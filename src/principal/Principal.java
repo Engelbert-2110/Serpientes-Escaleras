@@ -1,6 +1,6 @@
 
 package principal;
-import bienvenida.*;
+import bienvenida.Inicio;
 
 
 public class Principal {
