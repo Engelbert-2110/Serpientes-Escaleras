@@ -93,6 +93,11 @@ public class Agregar extends javax.swing.JFrame {
         getContentPane().add(BtnModificar, new org.netbeans.lib.awtextra.AbsoluteConstraints(370, 110, 100, 30));
 
         BtnEliminar.setText("Eliminar");
+        BtnEliminar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                BtnEliminarActionPerformed(evt);
+            }
+        });
         getContentPane().add(BtnEliminar, new org.netbeans.lib.awtextra.AbsoluteConstraints(370, 160, -1, -1));
 
         JTablePersona.setModel(new javax.swing.table.DefaultTableModel(
@@ -151,6 +156,19 @@ public class Agregar extends javax.swing.JFrame {
         verDatos();
         
     }//GEN-LAST:event_BtnAgregarActionPerformed
+
+    private void BtnEliminarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnEliminarActionPerformed
+        int c;
+        
+        try {
+          c = JTablePersona.getSelectedRow();
+          Lis.remove(c);
+            
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(null, "Favor escoja una fila"); 
+        }
+        verDatos();
+    }//GEN-LAST:event_BtnEliminarActionPerformed
     
     private void verDatos(){
          String Mat[][] = new String [Lis.size()][3];
