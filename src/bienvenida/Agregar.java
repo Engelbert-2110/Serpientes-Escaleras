@@ -30,7 +30,6 @@ public class Agregar extends javax.swing.JFrame {
         TxtNombre = new javax.swing.JTextField();
         TxtApellido = new javax.swing.JTextField();
         BtnAgregar = new javax.swing.JButton();
-        BtnModificar = new javax.swing.JButton();
         BtnEliminar = new javax.swing.JButton();
         BtnRegresar = new javax.swing.JButton();
         jLabel5 = new javax.swing.JLabel();
@@ -92,13 +91,7 @@ public class Agregar extends javax.swing.JFrame {
                 BtnAgregarActionPerformed(evt);
             }
         });
-        getContentPane().add(BtnAgregar, new org.netbeans.lib.awtextra.AbsoluteConstraints(370, 60, 100, 30));
-
-        BtnModificar.setBackground(new java.awt.Color(255, 255, 255));
-        BtnModificar.setFont(new java.awt.Font("Dialog", 1, 14)); // NOI18N
-        BtnModificar.setForeground(new java.awt.Color(0, 0, 0));
-        BtnModificar.setText("Modificar");
-        getContentPane().add(BtnModificar, new org.netbeans.lib.awtextra.AbsoluteConstraints(370, 110, 100, 30));
+        getContentPane().add(BtnAgregar, new org.netbeans.lib.awtextra.AbsoluteConstraints(370, 70, 100, 30));
 
         BtnEliminar.setBackground(new java.awt.Color(255, 255, 255));
         BtnEliminar.setFont(new java.awt.Font("Dialog", 1, 14)); // NOI18N
@@ -109,7 +102,7 @@ public class Agregar extends javax.swing.JFrame {
                 BtnEliminarActionPerformed(evt);
             }
         });
-        getContentPane().add(BtnEliminar, new org.netbeans.lib.awtextra.AbsoluteConstraints(370, 160, 100, 30));
+        getContentPane().add(BtnEliminar, new org.netbeans.lib.awtextra.AbsoluteConstraints(370, 120, 100, 30));
 
         BtnRegresar.setBackground(new java.awt.Color(255, 255, 255));
         BtnRegresar.setFont(new java.awt.Font("Dialog", 1, 14)); // NOI18N
@@ -120,7 +113,7 @@ public class Agregar extends javax.swing.JFrame {
                 BtnRegresarActionPerformed(evt);
             }
         });
-        getContentPane().add(BtnRegresar, new org.netbeans.lib.awtextra.AbsoluteConstraints(480, 270, 110, 40));
+        getContentPane().add(BtnRegresar, new org.netbeans.lib.awtextra.AbsoluteConstraints(480, 310, 110, 40));
 
         jLabel5.setFont(new java.awt.Font("Dialog", 1, 18)); // NOI18N
         jLabel5.setForeground(new java.awt.Color(255, 255, 255));
@@ -142,7 +135,7 @@ public class Agregar extends javax.swing.JFrame {
         JTablePersona.setGridColor(new java.awt.Color(0, 0, 0));
         jScrollPane1.setViewportView(JTablePersona);
 
-        getContentPane().add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 240, 460, 140));
+        getContentPane().add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 250, 460, 140));
 
         Fondo.setFont(new java.awt.Font("Dialog", 1, 14)); // NOI18N
         Fondo.setForeground(new java.awt.Color(255, 255, 255));
@@ -202,7 +195,7 @@ public class Agregar extends javax.swing.JFrame {
     }//GEN-LAST:event_BtnEliminarActionPerformed
 
     
-    //Guardar los jugadores agregados
+    //Guardar los jugadores agregados en archivos
     private void guardar(){
         File file = new File("Jugadores.txt");
         PrintWriter Escribe;
@@ -231,7 +224,7 @@ public class Agregar extends javax.swing.JFrame {
         String botones [] = {"Si", "No"};
         int opcion = JOptionPane.showOptionDialog(null, "Desea guardar la informacion?", "Titulo", 0, 0, null, botones, null);
         
-        if (opcion ==0) {
+        if (opcion == 0) {
             guardar();
             
         }
@@ -302,7 +295,6 @@ public class Agregar extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton BtnAgregar;
     private javax.swing.JButton BtnEliminar;
-    private javax.swing.JButton BtnModificar;
     private javax.swing.JButton BtnRegresar;
     private javax.swing.JLabel Fondo;
     private javax.swing.JTable JTablePersona;

@@ -1,9 +1,6 @@
-12
-carlos
-barragan
-21
-Marcos
-Escobar
-78
-Mateo
-Lopez
+5
+esteban
+barrios
+6
+Alfredo
+juarez

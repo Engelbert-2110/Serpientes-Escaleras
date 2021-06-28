@@ -1,14 +1,9 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
+
 package bienvenida;
 
-/**
- *
- * @author DELL
- */
+import javax.swing.JOptionPane;
+import tablero.*;
+
 public class Menu extends javax.swing.JFrame {
 
     /**
@@ -29,7 +24,6 @@ public class Menu extends javax.swing.JFrame {
     private void initComponents() {
 
         jButton1 = new javax.swing.JButton();
-        jButton2 = new javax.swing.JButton();
         jButton3 = new javax.swing.JButton();
         jButton4 = new javax.swing.JButton();
         jButton5 = new javax.swing.JButton();
@@ -40,7 +34,7 @@ public class Menu extends javax.swing.JFrame {
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jButton1.setBackground(new java.awt.Color(0, 0, 0));
-        jButton1.setFont(new java.awt.Font("Eras Bold ITC", 1, 18)); // NOI18N
+        jButton1.setFont(new java.awt.Font("Arial Narrow", 1, 20)); // NOI18N
         jButton1.setForeground(new java.awt.Color(255, 255, 255));
         jButton1.setText("Agregar Jugador");
         jButton1.addActionListener(new java.awt.event.ActionListener() {
@@ -48,21 +42,10 @@ public class Menu extends javax.swing.JFrame {
                 jButton1ActionPerformed(evt);
             }
         });
-        getContentPane().add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 130, 210, 40));
-
-        jButton2.setBackground(new java.awt.Color(0, 0, 0));
-        jButton2.setFont(new java.awt.Font("Eras Bold ITC", 1, 18)); // NOI18N
-        jButton2.setForeground(new java.awt.Color(255, 255, 255));
-        jButton2.setText("Mostrar Jugador");
-        jButton2.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton2ActionPerformed(evt);
-            }
-        });
-        getContentPane().add(jButton2, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 200, 200, 40));
+        getContentPane().add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 80, 210, 40));
 
         jButton3.setBackground(new java.awt.Color(0, 0, 0));
-        jButton3.setFont(new java.awt.Font("Eras Bold ITC", 1, 18)); // NOI18N
+        jButton3.setFont(new java.awt.Font("Arial Narrow", 1, 20)); // NOI18N
         jButton3.setForeground(new java.awt.Color(255, 255, 255));
         jButton3.setText("Jugar Ahora");
         jButton3.addActionListener(new java.awt.event.ActionListener() {
@@ -70,21 +53,21 @@ public class Menu extends javax.swing.JFrame {
                 jButton3ActionPerformed(evt);
             }
         });
-        getContentPane().add(jButton3, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 60, 150, 50));
+        getContentPane().add(jButton3, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 160, 150, 40));
 
         jButton4.setBackground(new java.awt.Color(0, 0, 0));
-        jButton4.setFont(new java.awt.Font("Eras Bold ITC", 1, 18)); // NOI18N
+        jButton4.setFont(new java.awt.Font("Arial Narrow", 1, 20)); // NOI18N
         jButton4.setForeground(new java.awt.Color(255, 255, 255));
-        jButton4.setText("Estadistica Jugadores");
+        jButton4.setText("Registro Jugadores");
         jButton4.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton4ActionPerformed(evt);
             }
         });
-        getContentPane().add(jButton4, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 260, 240, 40));
+        getContentPane().add(jButton4, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 230, 240, 40));
 
         jButton5.setBackground(new java.awt.Color(0, 0, 0));
-        jButton5.setFont(new java.awt.Font("Eras Bold ITC", 1, 18)); // NOI18N
+        jButton5.setFont(new java.awt.Font("Arial Narrow", 1, 20)); // NOI18N
         jButton5.setForeground(new java.awt.Color(255, 255, 255));
         jButton5.setText("Intrucciones");
         jButton5.addActionListener(new java.awt.event.ActionListener() {
@@ -92,7 +75,7 @@ public class Menu extends javax.swing.JFrame {
                 jButton5ActionPerformed(evt);
             }
         });
-        getContentPane().add(jButton5, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 320, 180, 40));
+        getContentPane().add(jButton5, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 300, 180, 40));
 
         jLabel1.setBackground(new java.awt.Color(0, 0, 0));
         jLabel1.setFont(new java.awt.Font("Eras Bold ITC", 1, 24)); // NOI18N
@@ -102,6 +85,7 @@ public class Menu extends javax.swing.JFrame {
         getContentPane().add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 600, 40));
 
         fondomenu.setBackground(new java.awt.Color(255, 255, 255));
+        fondomenu.setFont(new java.awt.Font("Arial Narrow", 1, 20)); // NOI18N
         fondomenu.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/NUEVE.jpg"))); // NOI18N
         getContentPane().add(fondomenu, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 600, 400));
 
@@ -115,16 +99,10 @@ public class Menu extends javax.swing.JFrame {
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
-        Tablero tablero = new Tablero();
+        Tabla tablero = new Tabla();
         tablero.setVisible(true);
         dispose();
     }//GEN-LAST:event_jButton3ActionPerformed
-
-    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
-        Mostrar mostrar = new Mostrar();
-        mostrar.setVisible(true);
-        dispose();
-    }//GEN-LAST:event_jButton2ActionPerformed
 
     private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
         Estadistica estadistica = new Estadistica();
@@ -133,7 +111,7 @@ public class Menu extends javax.swing.JFrame {
     }//GEN-LAST:event_jButton4ActionPerformed
 
     private void jButton5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton5ActionPerformed
-        // TODO add your handling code here:
+       JOptionPane.showMessageDialog(null, "1.Serpientes y escaleras se juega por dos a cuatro jugadores, cada uno se mueve independiente por el tablero.\n2.Los jugadores tiran un dado, y luego se mueven según el número designado, entre uno y seis casillas.\n Una vez que aterrizan en un casilla, tienen que realizar la acción designada por la casilla.");
     }//GEN-LAST:event_jButton5ActionPerformed
 
     /**
@@ -174,7 +152,6 @@ public class Menu extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel fondomenu;
     private javax.swing.JButton jButton1;
-    private javax.swing.JButton jButton2;
     private javax.swing.JButton jButton3;
     private javax.swing.JButton jButton4;
     private javax.swing.JButton jButton5;
