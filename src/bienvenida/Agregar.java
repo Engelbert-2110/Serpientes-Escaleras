@@ -1,6 +1,8 @@
 
 package bienvenida;
 
+import java.io.File;
+import java.io.PrintWriter;
 import usuario.*;
 import java.util.ArrayList;
 import javax.swing.JOptionPane;
@@ -30,6 +32,8 @@ public class Agregar extends javax.swing.JFrame {
         BtnAgregar = new javax.swing.JButton();
         BtnModificar = new javax.swing.JButton();
         BtnEliminar = new javax.swing.JButton();
+        BtnRegresar = new javax.swing.JButton();
+        jLabel5 = new javax.swing.JLabel();
         jScrollPane1 = new javax.swing.JScrollPane();
         JTablePersona = new javax.swing.JTable();
         Fondo = new javax.swing.JLabel();
@@ -79,7 +83,9 @@ public class Agregar extends javax.swing.JFrame {
         });
         getContentPane().add(TxtApellido, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 160, 190, -1));
 
+        BtnAgregar.setBackground(new java.awt.Color(255, 255, 255));
         BtnAgregar.setFont(new java.awt.Font("Dialog", 1, 14)); // NOI18N
+        BtnAgregar.setForeground(new java.awt.Color(0, 0, 0));
         BtnAgregar.setText("Agregar");
         BtnAgregar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -88,18 +94,40 @@ public class Agregar extends javax.swing.JFrame {
         });
         getContentPane().add(BtnAgregar, new org.netbeans.lib.awtextra.AbsoluteConstraints(370, 60, 100, 30));
 
+        BtnModificar.setBackground(new java.awt.Color(255, 255, 255));
         BtnModificar.setFont(new java.awt.Font("Dialog", 1, 14)); // NOI18N
+        BtnModificar.setForeground(new java.awt.Color(0, 0, 0));
         BtnModificar.setText("Modificar");
         getContentPane().add(BtnModificar, new org.netbeans.lib.awtextra.AbsoluteConstraints(370, 110, 100, 30));
 
+        BtnEliminar.setBackground(new java.awt.Color(255, 255, 255));
+        BtnEliminar.setFont(new java.awt.Font("Dialog", 1, 14)); // NOI18N
+        BtnEliminar.setForeground(new java.awt.Color(0, 0, 0));
         BtnEliminar.setText("Eliminar");
         BtnEliminar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 BtnEliminarActionPerformed(evt);
             }
         });
-        getContentPane().add(BtnEliminar, new org.netbeans.lib.awtextra.AbsoluteConstraints(370, 160, -1, -1));
+        getContentPane().add(BtnEliminar, new org.netbeans.lib.awtextra.AbsoluteConstraints(370, 160, 100, 30));
 
+        BtnRegresar.setBackground(new java.awt.Color(255, 255, 255));
+        BtnRegresar.setFont(new java.awt.Font("Dialog", 1, 14)); // NOI18N
+        BtnRegresar.setForeground(new java.awt.Color(0, 0, 0));
+        BtnRegresar.setText("Regresar");
+        BtnRegresar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                BtnRegresarActionPerformed(evt);
+            }
+        });
+        getContentPane().add(BtnRegresar, new org.netbeans.lib.awtextra.AbsoluteConstraints(480, 270, 110, 40));
+
+        jLabel5.setFont(new java.awt.Font("Dialog", 1, 18)); // NOI18N
+        jLabel5.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel5.setText("Sala  Jugadores");
+        getContentPane().add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(220, 0, 150, 40));
+
+        JTablePersona.setForeground(new java.awt.Color(0, 0, 0));
         JTablePersona.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null},
@@ -111,10 +139,13 @@ public class Agregar extends javax.swing.JFrame {
                 "Id", "Nombre", "Apellido"
             }
         ));
+        JTablePersona.setGridColor(new java.awt.Color(0, 0, 0));
         jScrollPane1.setViewportView(JTablePersona);
 
-        getContentPane().add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 240, 440, 140));
+        getContentPane().add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 240, 460, 140));
 
+        Fondo.setFont(new java.awt.Font("Dialog", 1, 14)); // NOI18N
+        Fondo.setForeground(new java.awt.Color(255, 255, 255));
         Fondo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/perfecto.jpg"))); // NOI18N
         getContentPane().add(Fondo, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 610, 420));
 
@@ -169,6 +200,49 @@ public class Agregar extends javax.swing.JFrame {
         }
         verDatos();
     }//GEN-LAST:event_BtnEliminarActionPerformed
+
+    
+    //Guardar los jugadores agregados
+    private void guardar(){
+        File file = new File("Jugadores.txt");
+        PrintWriter Escribe;
+        //Crear archivos
+        if (!file.exists()) {
+            try {
+                file.createNewFile();
+            } catch (Exception e) {
+            }
+        }
+        //Guardar Archivos 
+        try {
+            Persona auxiliar;
+            Escribe = new PrintWriter(file, "utf-8");
+            for (int i = 0; i < Lis.size(); i++) {
+                auxiliar = Lis.get(i);
+                auxiliar.guardar(Escribe);   
+            }
+            Escribe.close();
+        } catch (Exception e) {
+            
+        }
+    }
+    
+    private void BtnRegresarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnRegresarActionPerformed
+        String botones [] = {"Si", "No"};
+        int opcion = JOptionPane.showOptionDialog(null, "Desea guardar la informacion?", "Titulo", 0, 0, null, botones, null);
+        
+        if (opcion ==0) {
+            guardar();
+            
+        }
+ 
+        
+        Menu regresar = new Menu();
+        regresar.setVisible(true);
+        dispose();
+        
+        
+    }//GEN-LAST:event_BtnRegresarActionPerformed
     
     private void verDatos(){
          String Mat[][] = new String [Lis.size()][3];
@@ -229,6 +303,7 @@ public class Agregar extends javax.swing.JFrame {
     private javax.swing.JButton BtnAgregar;
     private javax.swing.JButton BtnEliminar;
     private javax.swing.JButton BtnModificar;
+    private javax.swing.JButton BtnRegresar;
     private javax.swing.JLabel Fondo;
     private javax.swing.JTable JTablePersona;
     private javax.swing.JTextField TxtApellido;
@@ -238,6 +313,7 @@ public class Agregar extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
+    private javax.swing.JLabel jLabel5;
     private javax.swing.JScrollPane jScrollPane1;
     // End of variables declaration//GEN-END:variables
 }

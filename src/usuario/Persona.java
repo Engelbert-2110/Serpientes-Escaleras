@@ -1,6 +1,8 @@
 
 package usuario;
 
+import java.io.PrintWriter;
+
 
 public class Persona {
     private int id;
@@ -62,6 +64,13 @@ public class Persona {
 
     public void setJugadas(int jugadas) {
         this.jugadas = jugadas;
+    }
+
+    public void guardar(PrintWriter Escribe) {
+      Escribe.println(id);
+      Escribe.println(nombre);
+      Escribe.println(apellido);
+     
     }
     
     
