@@ -139,7 +139,7 @@ public class Agregar extends javax.swing.JFrame {
 
         Fondo.setFont(new java.awt.Font("Dialog", 1, 14)); // NOI18N
         Fondo.setForeground(new java.awt.Color(255, 255, 255));
-        Fondo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/perfecto.jpg"))); // NOI18N
+        Fondo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/Naturaleza.jpg"))); // NOI18N
         getContentPane().add(Fondo, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 610, 420));
 
         pack();

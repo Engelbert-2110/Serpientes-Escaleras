@@ -34,7 +34,7 @@ public class Tabla extends JFrame implements ActionListener{
         private Image imagen;
         
         public void paint(Graphics g){
-            imagen = new ImageIcon(getClass().getResource("/imagenes/perfecto.jpg")).getImage();
+            imagen = new ImageIcon(getClass().getResource("/imagenes/Naturaleza.jpg")).getImage();
             g.drawImage(imagen, 0, 0, getWidth(), getHeight(), this);
             
             setOpaque(false);
@@ -293,11 +293,11 @@ public class Tabla extends JFrame implements ActionListener{
                     label[posj2].setBackground(jugador2);
                  
                 }
-                if (posj1 >=63) {
-                  
-                        JOptionPane.showMessageDialog(null, "El Jugador 1 es el Ganador");
-                    }
             }
+            if (posj1 >=63) {
+                JOptionPane.showMessageDialog(null, "El Jugador 1 es el Ganador");
+                }
+
             
             turno =1;
               
@@ -344,16 +344,13 @@ public class Tabla extends JFrame implements ActionListener{
                     label[posj2].setBackground(jugador2); 
                     
                 }
-                
-                if (posj2 >=63) {
-                        JOptionPane.showMessageDialog(null, "El Jugador 2 es el Ganador");
-                    }
-
-                turno =0;
-                
-                
-               
+      
             }
+            if (posj2 >=63) {
+                JOptionPane.showMessageDialog(null, "El Jugador 2 es el Ganador");
+                }
+            
+            turno =0;
       
         }
 
