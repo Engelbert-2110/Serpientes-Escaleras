@@ -1,4 +1,6 @@
 package tablero;
+
+import usuario.*;
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.*;
@@ -8,17 +10,14 @@ public class Tabla extends JFrame implements ActionListener{
     JLabel label[] = new JLabel[64];
     Color casillas, fondo, jugador, casilla2, jugador2;
     JButton movimiento;
-    int dadito, player, player2;
-    private int c0;
-    
-    
-    
-      
-    
+    private int dadito, player, player2;
+    FondoPanel pantalla = new FondoPanel(); 
+
     
     public Tabla(){
-        
+         
         super("Escaleras y Serpientes");
+        this.setContentPane(pantalla);
         this.setSize(800,600);
         this.setLocationRelativeTo(null);
         this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -27,23 +26,36 @@ public class Tabla extends JFrame implements ActionListener{
         this.getContentPane().setBackground(fondo);
         this.setVisible(true);
         
-        
+
+       
     }
     
-    
+    class FondoPanel extends JPanel{
+        private Image imagen;
+        
+        public void paint(Graphics g){
+            imagen = new ImageIcon(getClass().getResource("/imagenes/perfecto.jpg")).getImage();
+            g.drawImage(imagen, 0, 0, getWidth(), getHeight(), this);
+            
+            setOpaque(false);
+            super.paint(g);
+                    
+        }
+    }
+
     
     public void objetos(){
         casillas = new Color (204,204,204);
         casilla2 = new Color (255,51,0);
         fondo = new Color (0,255,255);
         jugador = new Color (0,204,0);
-        jugador2 = new Color (0,7,0);
+        jugador2 = new Color (204,204,0);
        
         for (int i = 0; i < label.length; i++) {
-            label[i] = new JLabel("");
+            label[i] = new JLabel("      "+(i+1)+"   ");
         }
         
-        movimiento = new JButton("Dado");
+        movimiento = new JButton("Girar Dado");
         
         this.setLayout(null);
         
@@ -124,7 +136,7 @@ public class Tabla extends JFrame implements ActionListener{
         label[62].setBounds(310, 360, 50, 50);
         label[63].setBounds(360, 360, 50, 50);
 
-        movimiento.setBounds(430,300,80,30);
+        movimiento.setBounds(500,300,100,50);
         
         tab();
         label[0].setBackground(jugador);
@@ -243,391 +255,105 @@ public class Tabla extends JFrame implements ActionListener{
     public void actionPerformed(ActionEvent ae) {
         
         if (turno == 0) {
-            JOptionPane.showMessageDialog(null, "Turno j1");
+            JOptionPane.showMessageDialog(null, "Turno Jugador 1");
             
             int espacios  = (int)(((Math.random())*60)/10)+1;
             
             posj1+=espacios;
             int postablero = posj1+1;
-            JOptionPane.showMessageDialog(null, "Has sacado un "+ espacios +" te mueves a la posicion"+postablero);
+            JOptionPane.showMessageDialog(null, "Jugador 1 has sacado un '"+ espacios +"' te mueves a la posición '"+postablero+"' ");
             
             for (int i = 0; i < 64; i++) {
                 
                 if (posj1 == 4) {
-                    JOptionPane.showMessageDialog(null, "Pisas una escalera, avanza hasta la casilla 10");
+                    JOptionPane.showMessageDialog(null, "Pisaste una escalera, avanza hasta la casilla 10");
                     posj1= 9;
                 }
-                
-                //j2
-                
-                 if (posj2 == 4) {
-                    JOptionPane.showMessageDialog(null, "Pisas una escalera, avanza hasta la casilla 10");
-                    posj2= 9;
+                if (posj1 == 9) {
+                    JOptionPane.showMessageDialog(null, "Pisaste una escalera, avanza 4 espacios");
+                    posj1= 13;
                 }
-
-            }
-                for (int i = 0; i < posj1; i++) {
-               
-                label[posj1].setBackground(jugador);
-                
+                if (posj1 == 30) {
+                    JOptionPane.showMessageDialog(null, "Pisaste una serpiente, retrocede 10 espacios");
+                    posj1= 20;
                 }
-               
-            if (posj1 >=63) {
+                if (posj1 == 54) {
+                    JOptionPane.showMessageDialog(null, "Acabas de perder un turno");
+                    posj1= 53;
+                }
+                if (posj1 == 60) {
+                    JOptionPane.showMessageDialog(null, "Pisaste una serpiente, retrocede 8 espacios");
+                    posj1= 52;
+                }
+                        
+                    //Pintar tablero
+                for (int j = 0; j < posj1; j++) { 
+                    tab();
+                    label[posj1].setBackground(jugador);  
+                    label[posj2].setBackground(jugador2);
+                    if (posj1 >=63) {
                   
-                JOptionPane.showMessageDialog(null, "J1 ha ganado");
-                    
-            }  
+                        JOptionPane.showMessageDialog(null, "El Jugador 1 es el Ganador");
+                    }
+                }
+            }
             
             turno =1;
+              
             
-            
-            
-        }else if (turno == 1) {
-                JOptionPane.showMessageDialog(null, "Turno j2");
-            
-                int espacios  = (int)(((Math.random())*60)/10)+1;
+ 
+        } else if (turno == 1) {
+            JOptionPane.showMessageDialog(null, "Turno Juagdor 2");
 
-                posj2+=espacios;
-                int postablero = posj2+1;
-                JOptionPane.showMessageDialog(null, "Has sacado un "+ espacios +" te mueves a la posicion"+postablero);
-            
-                for (int i = 0; i < 64; i++) {
+            int espacios  = (int)(((Math.random())*60)/10)+1;
 
-                    if (posj2 == 4) {
-                        JOptionPane.showMessageDialog(null, "Pisas una escalera, avanza hasta la casilla 10");
-                        posj2= 9;
+            posj2+=espacios;
+            int postablero = posj2+1;
+            JOptionPane.showMessageDialog(null, "Jugador 2 has sacado un '"+ espacios +"' te mueves a la posición '"+postablero+"' ");
+
+            for (int i = 0; i < 64; i++) {
+
+                if (posj2 == 4) {
+                    JOptionPane.showMessageDialog(null, "Pisaste una escalera, avanza hasta la casilla 10");
+                    posj2= 9;
+                }
+                if (posj2 == 9) {
+                    JOptionPane.showMessageDialog(null, "Pisaste una escalera, avanza 4 espacios");
+                    posj2= 13;
+                }
+                if (posj2 == 30) {
+                    JOptionPane.showMessageDialog(null, "Pisaste una serpiente, retrocede 10 espacios");
+                    posj2= 21;
+                }
+                if (posj2 == 54) {
+                    JOptionPane.showMessageDialog(null, "Acabas de perder un turno");
+                    posj2= 53;
+                }
+                if (posj2 == 60) {
+                    JOptionPane.showMessageDialog(null, "Pisaste una serpiente, retrocede 8 espacios");
+                    posj2= 52;
+
+
+                }
+
+                //Pintar Tablero
+                for (int j = 0; j < posj2; j++) {  
+                    tab();
+                    label[posj1].setBackground(jugador);  
+                    label[posj2].setBackground(jugador2); 
+                    if (posj2 >=63) {
+                        JOptionPane.showMessageDialog(null, "El Jugador 2 es el Ganador");
                     }
-                    
-                    if (posj1 == 4) {
-                       JOptionPane.showMessageDialog(null, "Pisas una escalera, avanza hasta la casilla 10 ");
-                       posj1= 9; 
-                    }
-
                 }
 
-                for (int i = 0; i < posj2; i++) {
-                    
-                    label[posj2].setBackground(jugador2);
 
-                }
-
-                if (posj2 >=63) {
-
-                    JOptionPane.showMessageDialog(null, "J2 ha ganado");
-
-                }
-                
                 turno =0;
-            }
-        
-        
-        
-        /*if(ae.getSource() == movimiento){
-            
-            if (turno == 0) {
-                
-                dadito = (int)(((Math.random())*60)/10)+1;
-                JOptionPane.showMessageDialog(null,"Turno J1\nHas caido en: "+dadito);
-                player = player + dadito;
-            
-                for (int i = 0; i < player; i++) {
-                    tab();
-                    label[player].setBackground(jugador);
-                
-                }
-                
-            } 
-            
-            if (turno == 1) {
-                dadito = (int)(((Math.random())*60)/10)+1;
-            JOptionPane.showMessageDialog(null,"Turno J2\nHas caido en: "+dadito);
-            player2 = player2 + dadito;
-            for (int i = 0; i < player; i++) {
-                tab();
-                label[player].setBackground(jugador2);
-            }
                 
                 
-            }
-            
-           
-            
-            
-            
-            
-            
-            switch(player){
-                case 0:
-                    tab();
-                    label[0].setBackground(jugador);  
-                break;
-                    case 1:
-                    tab();
-                    label[1].setBackground(jugador);
-                break;
-                case 2:
-                    tab();
-                    label[63].setBackground(jugador);
-                break;
-                case 3:
-                    tab();
-                    label[63].setBackground(jugador);
-                break;
-                case 4:
-                    tab();
-                    label[63].setBackground(jugador);
-                break;
-                case 5:
-                    tab();
-                    label[63].setBackground(jugador);
-                break;
-                case 6:
-                    tab();
-                    label[63].setBackground(jugador);
-                break;
-                case 7:
-                    tab();
-                    label[63].setBackground(jugador);
-                break;
-                case 8:
-                    tab();
-                    label[63].setBackground(jugador);
-                break;
-                case 9:
-                    tab();
-                    label[63].setBackground(jugador);
-                break;
-                case 10:
-                    tab();
-                    label[63].setBackground(jugador);
-                break;
-                
-                //Segund parte
-                case 11:
-                    tab();
-                    c12.setBackground(jugador);
-                break;
-                case 12:
-                    tab();
-                    c13.setBackground(jugador);
-                break;
-                case 13:
-                    tab();
-                    c14.setBackground(jugador);
-                break;
-                case 14:
-                    tab();
-                    c15.setBackground(jugador);
-                break;
-                case 15:
-                    tab();
-                    c16.setBackground(jugador);
-                break;
-                case 16:
-                    tab();
-                    c17.setBackground(jugador);
-                break;
-                case 17:
-                    tab();
-                    c18.setBackground(jugador);
-                break;
-                case 18:
-                    tab();
-                    c19.setBackground(jugador);
-                break;
-                case 19:
-                    tab();
-                    c20.setBackground(jugador);
-                break;
-                case 20:
-                    tab();
-                    c21.setBackground(jugador);
-                break;
-                
-                //Tercera parte
-                case 21:
-                    tab();
-                    c22.setBackground(jugador);
-                break;
-                case 22:
-                    tab();
-                    c23.setBackground(jugador);
-                break;
-                case 23:
-                    tab();
-                    c24.setBackground(jugador);
-                break;
-                case 24:
-                    tab();
-                    c25.setBackground(jugador);
-                break;
-                case 25:
-                    tab();
-                    c26.setBackground(jugador);
-                break;
-                case 26:
-                    tab();
-                    c27.setBackground(jugador);
-                break;
-                case 27:
-                    tab();
-                    c28.setBackground(jugador);
-                break;
-                case 28:
-                    tab();
-                    c29.setBackground(jugador);
-                break;
-                case 29:
-                    tab();
-                    c30.setBackground(jugador);
-                break;
-                case 30:
-                    tab();
-                    c31.setBackground(jugador);
-                break;
-                
-                //Cuarta parte
-                case 31:
-                    tab();
-                    c32.setBackground(jugador);
-                break;
-                case 32:
-                    tab();
-                    c33.setBackground(jugador);
-                break;
-                case 33:
-                    tab();
-                    c34.setBackground(jugador);
-                break;
-                case 34:
-                    tab();
-                    c35.setBackground(jugador);
-                break;
-                case 35:
-                    tab();
-                    c36.setBackground(jugador);
-                break;
-                case 36:
-                    tab();
-                    c37.setBackground(jugador);
-                break;
-                case 37:
-                    tab();
-                    c38.setBackground(jugador);
-                break;
-                case 38:
-                    tab();
-                    c39.setBackground(jugador);
-                break;
-                case 39:
-                    tab();
-                    c40.setBackground(jugador);
-                break;
-                case 40:
-                    tab();
-                    c41.setBackground(jugador);
-                break;
-                
-                //Quinta parte
-                case 41:
-                    tab();
-                    c42.setBackground(jugador);
-                break;
-                case 42:
-                    tab();
-                    c43.setBackground(jugador);
-                break;
-                case 43:
-                    tab();
-                    c44.setBackground(jugador);
-                break;
-                case 44:
-                    tab();
-                    c45.setBackground(jugador);
-                break;
-                case 45:
-                    tab();
-                    c46.setBackground(jugador);
-                break;
-                case 46:
-                    tab();
-                    c47.setBackground(jugador);
-                break;
-                case 47:
-                    tab();
-                    c48.setBackground(jugador);
-                break;
-                
-                 case 48:
-                    tab();
-                    c49.setBackground(jugador);
-                break;
-                case 49:
-                    tab();
-                    c50.setBackground(jugador);
-                break;
-                case 50:
-                    tab();
-                    c51.setBackground(jugador);
-                break;
-                case 51:
-                    tab();
-                    c52.setBackground(jugador);
-                break;
-                case 52:
-                    tab();
-                    c53.setBackground(jugador);
-                break;
-                case 53:
-                    tab();
-                    c54.setBackground(jugador);
-                break;
-                case 54:
-                    tab();
-                    c55.setBackground(jugador);
-                break;
-                case 55:
-                    tab();
-                    c56.setBackground(jugador);
-                break;
-
-                case 56:
-                    tab();
-                    c57.setBackground(jugador);
-                break;
-                case 57:
-                    tab();
-                    c58.setBackground(jugador);
-                break;
-                case 58:
-                    tab();
-                    c59.setBackground(jugador);
-                break;
-                case 59:
-                    tab();
-                    c60.setBackground(jugador);
-                break;
-                case 60:
-                    tab();
-                    c61.setBackground(jugador);
-                break;
-                case 61:
-                    tab();
-                    c62.setBackground(jugador);
-                break;
-                case 62:
-                    tab();
-                    c63.setBackground(jugador);
-                break;
-                case 63:
-                    tab();
-                    c64.setBackground(jugador);
-                break;
                
             }
-        }*/
       
-    }
+        }
 
-    
+    }   
 }

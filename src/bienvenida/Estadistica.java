@@ -32,7 +32,7 @@ public class Estadistica extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
-        jButton1.setBackground(new java.awt.Color(0, 204, 0));
+        jButton1.setBackground(new java.awt.Color(204, 204, 0));
         jButton1.setText("jButton1");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
