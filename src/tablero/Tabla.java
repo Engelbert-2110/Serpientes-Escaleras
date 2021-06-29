@@ -291,11 +291,12 @@ public class Tabla extends JFrame implements ActionListener{
                     tab();
                     label[posj1].setBackground(jugador);  
                     label[posj2].setBackground(jugador2);
-                    if (posj1 >=63) {
+                 
+                }
+                if (posj1 >=63) {
                   
                         JOptionPane.showMessageDialog(null, "El Jugador 1 es el Ganador");
                     }
-                }
             }
             
             turno =1;
@@ -341,11 +342,12 @@ public class Tabla extends JFrame implements ActionListener{
                     tab();
                     label[posj1].setBackground(jugador);  
                     label[posj2].setBackground(jugador2); 
-                    if (posj2 >=63) {
+                    
+                }
+                
+                if (posj2 >=63) {
                         JOptionPane.showMessageDialog(null, "El Jugador 2 es el Ganador");
                     }
-                }
-
 
                 turno =0;
                 
