@@ -181,6 +181,17 @@ public class Agregar extends javax.swing.JFrame {
         
     }//GEN-LAST:event_BtnAgregarActionPerformed
 
+    public void cargar (){
+        File archivo = new File ("Jugadores");
+        FileReader Leer;
+        BufferedReader Almacem;
+        
+        try {
+            
+        } catch (Exception e) {
+        }
+    }
+    
     private void BtnEliminarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnEliminarActionPerformed
         int c;
         

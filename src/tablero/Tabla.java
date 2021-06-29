@@ -10,6 +10,7 @@ public class Tabla extends JFrame implements ActionListener{
     JLabel label[] = new JLabel[64];
     Color casillas, fondo, jugador, casilla2, jugador2;
     JButton movimiento;
+    JButton regresar;
     private int dadito, player, player2;
     FondoPanel pantalla = new FondoPanel(); 
 
@@ -44,6 +45,8 @@ public class Tabla extends JFrame implements ActionListener{
     }
 
     
+    
+    
     public void objetos(){
         casillas = new Color (204,204,204);
         casilla2 = new Color (255,51,0);
@@ -56,6 +59,10 @@ public class Tabla extends JFrame implements ActionListener{
         }
         
         movimiento = new JButton("Girar Dado");
+        regresar = new JButton("Regresar");
+        
+        
+        
         
         this.setLayout(null);
         
@@ -137,6 +144,7 @@ public class Tabla extends JFrame implements ActionListener{
         label[63].setBounds(360, 360, 50, 50);
 
         movimiento.setBounds(500,300,100,50);
+        regresar.setBounds(500, 200, 100, 50);
         
         tab();
         label[0].setBackground(jugador);
@@ -145,9 +153,11 @@ public class Tabla extends JFrame implements ActionListener{
         for (int i = 0; i < label.length; i++) {
             this.add(label[i]);
         }
-
+        
         this.add(movimiento);
         movimiento.addActionListener(this);
+        
+        
     }
     
     public void tab(){
