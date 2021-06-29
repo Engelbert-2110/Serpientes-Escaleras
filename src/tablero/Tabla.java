@@ -157,6 +157,8 @@ public class Tabla extends JFrame implements ActionListener{
         this.add(movimiento);
         movimiento.addActionListener(this);
         
+        this.add(regresar);
+        
         
     }
     
@@ -265,7 +267,7 @@ public class Tabla extends JFrame implements ActionListener{
     public void actionPerformed(ActionEvent ae) {
         
         if (turno == 0) {
-            JOptionPane.showMessageDialog(null, "Turno Jugador 1");
+            JOptionPane.showMessageDialog(null, "Turno Jugador 1 Verde");
             
             int espacios  = (int)(((Math.random())*60)/10)+1;
             
@@ -279,7 +281,7 @@ public class Tabla extends JFrame implements ActionListener{
                     JOptionPane.showMessageDialog(null, "Pisaste una escalera, avanza hasta la casilla 10");
                     posj1= 9;
                 }
-                if (posj1 == 9) {
+                if (posj1 == 8) {
                     JOptionPane.showMessageDialog(null, "Pisaste una escalera, avanza 4 espacios");
                     posj1= 13;
                 }
@@ -304,17 +306,17 @@ public class Tabla extends JFrame implements ActionListener{
                  
                 }
             }
+            
             if (posj1 >=63) {
                 JOptionPane.showMessageDialog(null, "El Jugador 1 es el Ganador");
-                }
+            }
 
-            
             turno =1;
               
             
  
         } else if (turno == 1) {
-            JOptionPane.showMessageDialog(null, "Turno Juagdor 2");
+            JOptionPane.showMessageDialog(null, "Turno Juagador 2 Amarillo");
 
             int espacios  = (int)(((Math.random())*60)/10)+1;
 
@@ -344,7 +346,6 @@ public class Tabla extends JFrame implements ActionListener{
                     JOptionPane.showMessageDialog(null, "Pisaste una serpiente, retrocede 8 espacios");
                     posj2= 52;
 
-
                 }
 
                 //Pintar Tablero
@@ -358,7 +359,7 @@ public class Tabla extends JFrame implements ActionListener{
             }
             if (posj2 >=63) {
                 JOptionPane.showMessageDialog(null, "El Jugador 2 es el Ganador");
-                }
+            }
             
             turno =0;
       
