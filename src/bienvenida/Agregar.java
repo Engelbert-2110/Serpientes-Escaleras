@@ -1,21 +1,24 @@
 
 package bienvenida;
 
+import java.io.BufferedReader;
 import java.io.File;
+import java.io.FileReader;
 import java.io.PrintWriter;
 import usuario.*;
 import java.util.ArrayList;
 import javax.swing.JOptionPane;
 
 
-public class Agregar extends javax.swing.JFrame {
+public final class Agregar extends javax.swing.JFrame {
 
+    private ArrayList<Persona>Lis;   
     
-    private ArrayList<Persona>Lis;    
     public Agregar() {
         Lis= new ArrayList<Persona>();
         initComponents();
-        this.setLocationRelativeTo(Agregar.this);
+        
+        this.setLocationRelativeTo(Agregar.this);        
     }
 
     @SuppressWarnings("unchecked")
@@ -157,6 +160,25 @@ public class Agregar extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_TxtIdActionPerformed
     
+    public void Cargar (){
+        File Archivo = new File ("Jugadores.txt");
+        FileReader Leer;
+        BufferedReader Almacen;
+        Persona per, aux = new Persona();
+        try {
+            Leer = new FileReader(Archivo);
+            Almacen = new BufferedReader(Leer);
+            per = aux.cargar(Almacen);
+            while (per != null) {
+               Lis.add(per);  
+            }
+            Almacen.close();
+            Leer.close();
+        } catch (Exception e) {
+        }
+        verDatos();
+    }
+    
     private void limpiar(){
         TxtId.setText("");
         TxtNombre.setText("");
@@ -181,16 +203,7 @@ public class Agregar extends javax.swing.JFrame {
         
     }//GEN-LAST:event_BtnAgregarActionPerformed
 
-    public void cargar (){
-        File archivo = new File ("Jugadores");
-        FileReader Leer;
-        BufferedReader Almacem;
-        
-        try {
-            
-        } catch (Exception e) {
-        }
-    }
+    
     
     private void BtnEliminarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnEliminarActionPerformed
         int c;
@@ -240,7 +253,6 @@ public class Agregar extends javax.swing.JFrame {
             
         }
  
-        
         Menu regresar = new Menu();
         regresar.setVisible(true);
         dispose();
@@ -268,15 +280,11 @@ public class Agregar extends javax.swing.JFrame {
          
          
     }
-    /**
-     * @param args the command line arguments
-     */
+   
+     
     public static void main(String args[]) {
-        /* Set the Nimbus look and feel */
-        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
-        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
-         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
-         */
+        
+        
         try {
             for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
                 if ("Nimbus".equals(info.getName())) {
@@ -293,9 +301,9 @@ public class Agregar extends javax.swing.JFrame {
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
             java.util.logging.Logger.getLogger(Agregar.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
-        //</editor-fold>
+       
 
-        /* Create and display the form */
+       
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
                 new Agregar().setVisible(true);

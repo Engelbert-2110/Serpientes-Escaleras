@@ -1,40 +1,17 @@
 
 package bienvenida;
-import usuario.*;
 import bienvenida.Agregar;
-import bienvenida.Agregar;
-import java.io.BufferedReader;
-import java.io.File;
-import java.io.FileReader;
-import java.nio.Buffer;
-import java.util.ArrayList;
-
-
 public class Estadistica extends javax.swing.JFrame {
 
-    Lis= new ArrayList<Persona>();
+    
     public Estadistica() {
         initComponents();
         this.setLocationRelativeTo(Estadistica.this);
+       
     }
 
     
-     public void cargar (){
-        File Archivo = new File ("Jugadores");
-        FileReader Leer;
-        BufferedReader Almacen;
-        Persona per, aux = new Persona();
-        try {
-            Leer = new FileReader(Archivo);
-            Almacen = new BufferedReader(Leer);
-            per = aux.cargar(Almacen);
-            while (per != null) {
-               Lis.add(per);
-                
-            }
-        } catch (Exception e) {
-        }
-    }
+     
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
@@ -86,7 +63,7 @@ public class Estadistica extends javax.swing.JFrame {
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         Menu reg = new Menu();
         reg.setVisible(true);
-        dispose();
+        dispose();    
     }//GEN-LAST:event_jButton1ActionPerformed
 
    
@@ -125,4 +102,6 @@ public class Estadistica extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel1;
     private javax.swing.JScrollPane jScrollPane1;
     // End of variables declaration//GEN-END:variables
+
+    
 }
